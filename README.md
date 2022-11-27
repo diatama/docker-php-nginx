@@ -31,13 +31,13 @@ the best practices and is easy to understand and modify to your needs.
 
 Start the Docker container:
 
-    docker run -p 80:8080 trafex/php-nginx
+    docker run -p 80:80 trafex/php-nginx
 
 See the PHP info on http://localhost, or the static html page on http://localhost/test.html
 
 Or mount your own code to be served by PHP-FPM & Nginx
 
-    docker run -p 80:8080 -v ~/my-codebase:/var/www/html trafex/php-nginx
+    docker run -p 80:80 -v ~/my-codebase:/var/www/html trafex/php-nginx
 
 ### Docker Hub repository name change
 Since we switched to PHP8 the repository name [trafex/alpine-nginx-php7](https://hub.docker.com/r/trafex/alpine-nginx-php7) didn't make sense anymore.
