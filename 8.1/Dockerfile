@@ -10,12 +10,14 @@ RUN apk add --no-cache \
   curl \
   nginx \
   php81 \
+  php81-bcmath \
   php81-ctype \
   php81-curl \
   php81-dom \
   php81-fpm \
   php81-gd \
   php81-intl \
+  php81-json \
   php81-mbstring \
   php81-mysqli \
   php81-opcache \
@@ -24,6 +26,7 @@ RUN apk add --no-cache \
   php81-phar \
   php81-session \
   php81-simplexml \
+  php81-tokenizer \
   php81-xml \
   php81-xmlreader \
   php81-zip \

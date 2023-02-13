@@ -15,12 +15,14 @@ RUN apk add --no-cache \
   curl \
   nginx \
   php \
+  php-bcmath \
   php-ctype \
   php-curl \
   php-dom \
   php-fpm \
   php-gd \
   php-intl \
+  php-json \
   php-mbstring \
   php-mysqli \
   php-opcache \
@@ -29,6 +31,7 @@ RUN apk add --no-cache \
   php-phar \
   php-session \
   php-simplexml \
+  php-tokenizer \
   php-xml \
   php-xmlreader \
   php-zip \
