@@ -1,43 +1,44 @@
 # =========================
 # Base Image
 # =========================
-ARG ALPINE_VERSION=3.18
+ARG ALPINE_VERSION=3.21
 FROM alpine:${ALPINE_VERSION}
 
 LABEL maintainer="Tim de Pater <code@trafex.nl>" \
-      description="Lightweight container with Nginx 1.24 & PHP 8.2 based on Alpine Linux."
+      description="Lightweight container with Nginx & PHP 8.2 based on Alpine Linux."
 
 # Setup document root
 WORKDIR /var/www/html
 
 # Install dependencies
-RUN apk add --no-cache \
-    curl \
-    nginx \
-    supervisor \
-    php82 \
-    php82-bcmath \
-    php82-ctype \
-    php82-curl \
-    php82-dom \
-    php82-fpm \
-    php82-gd \
-    php82-intl \
-    php82-mbstring \
-    php82-mysqli \
-    php82-opcache \
-    php82-openssl \
-    php82-pdo_mysql \
-    php82-phar \
-    php82-redis \
-    php82-session \
-    php82-simplexml \
-    php82-tokenizer \
-    php82-xml \
-    php82-xmlreader \
-    php82-zip \
-  && ln -s /usr/bin/php82 /usr/bin/php \
-  && rm -rf /var/cache/apk/*
+RUN apk update && apk upgrade --no-cache \
+    && apk add --no-cache \
+       curl \
+       nginx \
+       supervisor \
+       php82 \
+       php82-bcmath \
+       php82-ctype \
+       php82-curl \
+       php82-dom \
+       php82-fpm \
+       php82-gd \
+       php82-intl \
+       php82-mbstring \
+       php82-mysqli \
+       php82-opcache \
+       php82-openssl \
+       php82-pdo_mysql \
+       php82-phar \
+       php82-pecl-redis \
+       php82-session \
+       php82-simplexml \
+       php82-tokenizer \
+       php82-xml \
+       php82-xmlreader \
+       php82-zip \
+    && ln -s /usr/bin/php82 /usr/bin/php \
+    && rm -rf /var/cache/apk/*
 
 # =========================
 # Configuration
