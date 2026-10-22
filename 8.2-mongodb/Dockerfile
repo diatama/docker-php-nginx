@@ -1,12 +1,13 @@
-ARG ALPINE_VERSION=3.18
+ARG ALPINE_VERSION=3.21
 FROM alpine:${ALPINE_VERSION}
 LABEL Maintainer="Tim de Pater <code@trafex.nl>"
-LABEL Description="Lightweight container with Nginx 1.24 & PHP 8.2 based on Alpine Linux."
+LABEL Description="Lightweight container with Nginx & PHP 8.2 based on Alpine Linux."
 # Setup document root
 WORKDIR /var/www/html
 
 # Install packages and remove default server definition
-RUN apk add --no-cache \
+RUN apk update && apk upgrade --no-cache \
+  && apk add --no-cache \
   curl \
   nginx \
   php82 \
@@ -17,21 +18,20 @@ RUN apk add --no-cache \
   php82-fpm \
   php82-gd \
   php82-intl \
-  php82-json \
   php82-mbstring \
   php82-mysqli \
   php82-opcache \
   php82-openssl \
   php82-pdo_mysql \
   php82-phar \
-  php82-redis \
+  php82-pecl-redis \
   php82-session \
   php82-simplexml \
   php82-tokenizer \
   php82-xml \
   php82-xmlreader \
   php82-zip \
-  php82-mongodb \
+  php82-pecl-mongodb \
   supervisor
 
 # Create symlink so programs depending on `php` still function
