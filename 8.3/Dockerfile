@@ -10,6 +10,8 @@ RUN apk update && apk upgrade --no-cache \
   && apk add --no-cache \
   --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
   --repository=https://dl-cdn.alpinelinux.org/alpine/edge/main \
+  --repository=https://dl-cdn.alpinelinux.org/alpine/v3.24/community \
+  --repository=https://dl-cdn.alpinelinux.org/alpine/v3.24/main \
   curl \
   nginx \
   php83 \
@@ -24,6 +26,8 @@ RUN apk update && apk upgrade --no-cache \
   php83-mysqli \
   php83-opcache \
   php83-openssl \
+  php83-pdo \
+  php83-pdo_mysql \
   php83-phar \
   php83-pecl-redis \
   php83-session \
@@ -31,7 +35,9 @@ RUN apk update && apk upgrade --no-cache \
   php83-xml \
   php83-xmlreader \
   php83-xmlwriter \
-  supervisor
+  supervisor \
+  && ln -s /usr/bin/php83 /usr/bin/php \
+  && rm -rf /var/cache/apk/*
 
 # Configuration
 ENV PHP_INI_DIR=/etc/php83
