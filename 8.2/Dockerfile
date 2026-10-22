@@ -1,7 +1,7 @@
 # =========================
 # Base Image
 # =========================
-ARG ALPINE_VERSION=3.21
+ARG ALPINE_VERSION=3.24
 FROM alpine:${ALPINE_VERSION}
 
 LABEL maintainer="Tim de Pater <code@trafex.nl>" \
@@ -13,6 +13,8 @@ WORKDIR /var/www/html
 # Install dependencies
 RUN apk update && apk upgrade --no-cache \
     && apk add --no-cache \
+       --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
+       --repository=https://dl-cdn.alpinelinux.org/alpine/edge/main \
        curl \
        nginx \
        supervisor \
