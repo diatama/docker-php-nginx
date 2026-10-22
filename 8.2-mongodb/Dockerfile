@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION=3.24
+ARG ALPINE_VERSION=3.22
 FROM alpine:${ALPINE_VERSION}
 LABEL Maintainer="Tim de Pater <code@trafex.nl>"
 LABEL Description="Lightweight container with Nginx & PHP 8.2 based on Alpine Linux."
@@ -8,8 +8,6 @@ WORKDIR /var/www/html
 # Install packages and remove default server definition
 RUN apk update && apk upgrade --no-cache \
   && apk add --no-cache \
-  --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
-  --repository=https://dl-cdn.alpinelinux.org/alpine/edge/main \
   curl \
   nginx \
   php82 \
