@@ -1,7 +1,7 @@
 # =========================
 # Base Image
 # =========================
-ARG ALPINE_VERSION=3.21
+ARG ALPINE_VERSION=3.24
 FROM alpine:${ALPINE_VERSION}
 
 LABEL maintainer="Tim de Pater <code@trafex.nl>" \
