@@ -1,3 +1,6 @@
+# WARNING: PHP 8.0 is End-of-Life (EOL) upstream and Alpine 3.16 is deprecated.
+# It is vulnerable to critical vulnerabilities including CVE-2026-109618 and CVE-2026-109619 ("PHP2Shell").
+# Do NOT deploy this image in production or expose it to untrusted traffic. Upgrade to PHP 8.3 or 8.4.
 ARG ALPINE_VERSION=3.16
 FROM alpine:${ALPINE_VERSION}
 LABEL Maintainer="Tim de Pater <code@trafex.nl>"
@@ -52,7 +55,7 @@ COPY config/php.ini /etc/php8/conf.d/custom.ini
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
+RUN chown -R nobody:nobody /var/www/html /run /var/lib/nginx /var/log/nginx
 
 # Switch to use a non-root user from here on
 USER nobody
