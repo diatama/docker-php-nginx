@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION=3.20
+ARG ALPINE_VERSION=3.21
 FROM alpine:${ALPINE_VERSION}
 LABEL Maintainer="Tim de Pater <code@trafex.nl>"
 LABEL Description="Lightweight container with Nginx 1.26 & PHP 8.3 based on Alpine Linux."
@@ -6,7 +6,8 @@ LABEL Description="Lightweight container with Nginx 1.26 & PHP 8.3 based on Alpi
 WORKDIR /var/www/html
 
 # Install packages and remove default server definition
-RUN apk add --no-cache \
+RUN apk update && apk upgrade --no-cache \
+  && apk add --no-cache \
   curl \
   nginx \
   php83 \
@@ -22,7 +23,7 @@ RUN apk add --no-cache \
   php83-opcache \
   php83-openssl \
   php83-phar \
-  php83-redis \
+  php83-pecl-redis \
   php83-session \
   php83-tokenizer \
   php83-xml \
@@ -44,7 +45,8 @@ COPY config/php.ini ${PHP_INI_DIR}/conf.d/custom.ini
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
+RUN mkdir -p /run/nginx \
+    && chown -R nobody:nobody /var/www/html /run /var/lib/nginx /var/log/nginx
 
 # Switch to use a non-root user from here on
 USER nobody
