@@ -32,7 +32,6 @@ RUN apk update && apk upgrade --no-cache \
     php85-mysqli \
     php85-pdo \
     php85-pdo_mysql \
-    php85-opcache \
     php85-phar \
     php85-pecl-redis \
     php85-session \
@@ -40,8 +39,12 @@ RUN apk update && apk upgrade --no-cache \
     php85-xml \
     php85-xmlreader \
     php85-xmlwriter \
-  && ln -s /usr/bin/php85 /usr/bin/php \
+  && ln -sf /usr/bin/php85 /usr/bin/php \
   && rm -rf /var/cache/apk/*
+
+# Notes:
+# - php85-ctype, php85-openssl, php85-opcache are core in PHP 8.5 → no need to install separately
+# - cleaned apk cache to reduce image size
 
 # =========================
 # Configuration
