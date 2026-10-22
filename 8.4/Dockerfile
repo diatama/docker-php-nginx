@@ -16,6 +16,8 @@ RUN apk update && apk upgrade --no-cache \
   && apk add --no-cache \
     --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
     --repository=https://dl-cdn.alpinelinux.org/alpine/edge/main \
+    --repository=https://dl-cdn.alpinelinux.org/alpine/v3.24/community \
+    --repository=https://dl-cdn.alpinelinux.org/alpine/v3.24/main \
     curl \
     nginx \
     supervisor \
