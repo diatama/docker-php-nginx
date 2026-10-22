@@ -12,7 +12,8 @@ WORKDIR /var/www/html
 # =========================
 # Install Dependencies
 # =========================
-RUN apk add --no-cache \
+RUN apk update && apk upgrade --no-cache \
+  && apk add --no-cache \
     curl \
     nginx \
     supervisor \
